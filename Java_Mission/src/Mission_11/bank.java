@@ -1,6 +1,5 @@
 package Mission_11;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 /*
@@ -9,6 +8,8 @@ import java.util.Scanner;
  * 1. 계좌등록
  * 	 계좌번호 숫자 8개 입력, 예금주 입력, 최초예금액 입력, 비밀번호 입력
  * 		배열에 저장 arr[계좌번호] = {예금주이름, 최초예금액, 비밀번호}
+ *			*추후에 계좌번호 int로 생성 후 String으로 변환해서  
+ *
  * 2. 입금
  * 	 계좌번호 arr[계좌번호] 입력
  * 	입금액 money = sc.nextint(); 입력
@@ -35,10 +36,12 @@ import java.util.Scanner;
  */
 public class bank {
 public static void main(String[] args) {
-	Account ds = new Account();
+	AccountAccess ds = new AccountAccess();
+	Account ss = new Account();
+	
 	
 	Scanner sc = new Scanner(System.in);
-	String name = " ";
+			int b;
 	do {
 		System.out.println("===================");
 		System.out.println("1. 계좌등록");
@@ -49,7 +52,7 @@ public static void main(String[] args) {
 		System.out.println("0. 종료");
 		System.out.println("===================");
 		System.out.print("입력 >>> ");
-		int b = sc.nextInt();
+		b = sc.nextInt();
 		if(b == 0) break;
 		// break: 제어문을 탈출하는 키워드 * 가장 가까운 제어문만 탈출한다.
 		
@@ -59,13 +62,38 @@ public static void main(String[] args) {
 		switch (b) {
 		case 1:
 				System.out.print("계좌번호 >>");
-				String  = sc.next();
-				System.out.print(" >>");
-				String c = sc.next();
+				sc.nextLine();
+				String account  = sc.nextLine();
+				ss.setAccount(account);
+				System.out.print("예금주명 >>");
+				String name = sc.nextLine();
+				ss.setName(name);
+				System.out.println("비밀번호 >>");
+				int ps = sc.nextInt();
+				ss.setPassword(ps);
+				System.out.println("예금액");
+				int money = sc.nextInt();
+				ss.setMoney(money);
+				ds.create(ss);
 			break;
+			
 		case 2:
+			System.out.println("계좌번호 >>");
+			sc.nextLine();
+			String account1 = sc.nextLine();
+			System.out.println("비밀번호 >>");
+			int ps1 = sc.nextInt();
+			System.out.println("입금할 금액을 입력해주세요.");
+			int money1 = sc.nextInt();
+			ss.setMoney(money1);
+			ds.deposit(ss);
+			
 			break;
+			
 		case 3:
+			System.out.println(ds.accountList[0]);
+			System.out.println(ds.accountList[1]);
+			System.out.println(ds.accountList[2]);
 			break;
 		case 4:
 			break;
@@ -73,7 +101,8 @@ public static void main(String[] args) {
 			break;
 		default:
 			break;
-		}
-		
+		}} while(b != 0);
+	
 }
+
 }

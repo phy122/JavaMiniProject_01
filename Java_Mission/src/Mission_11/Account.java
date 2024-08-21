@@ -1,5 +1,7 @@
 package Mission_11;
 
+import java.util.Objects;
+
 public class Account{
 /**
  * 통장 정보
@@ -8,19 +10,28 @@ public class Account{
  * - 통장잔액
  * - 비밀번호
  */
-	
-	private int Account;
+	private String account;
 	private String name;
 	private int money;
 	private int password;
 	
+	
+	
 	public Account() {
-		this(0000-0000,"예금주 없음",0,0000);
+		this("계좌없음","예금주 없음",0,0000);
 	}
 
 
-	public Account(int account, String name, int money, int password) {
-		this.Account = account;
+	public Account(String account, String name, int money) {
+		this.account = account;
+		this.name = name;
+		this.money = money;
+	}
+	
+
+
+	public Account(String account, String name, int money, int password) {
+		this.account = account;
 		this.name = name;
 		this.money = money;
 		this.password = password;
@@ -29,13 +40,13 @@ public class Account{
 	}
 
 
-	public int getAccount() {
-		return Account;
+	public String getAccount() {
+		return account;
 	}
 
 
-	public void setAccount(int account) {
-		Account = account;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 
@@ -54,8 +65,12 @@ public class Account{
 	}
 
 
-	public void setMoney(int money) {
-		this.money = money;
+	public Object setMoney(int money) {
+		if(money > 1000000) {
+			System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+			return null;
+		}
+		return this.money = money;
 	}
 
 
@@ -71,7 +86,12 @@ public class Account{
 
 	@Override
 	public String toString() {
-		return "Account [계좌번호=" + Account + ", 예금주명 =" + name + ", 예금액=" + money + "]";
+		return "계좌정보 [계좌번호=" + account + ", 예금주명=" + name + ", 예금액=" + money + "]";
 	}
+
+	
+
+
+
 	
 }
