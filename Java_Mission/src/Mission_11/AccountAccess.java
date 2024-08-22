@@ -7,17 +7,18 @@ public class AccountAccess {
 	
 	Account[] accountList = new Account[Ac];
 	
-	public Account create(Account ac) {
+	public int create(Account ac) {
 		if(count >= 1000) {
 			System.out.println("계좌가 가득 찼습니다.");
-			return null;
+			return 0;
 		}
 		int AcNo = ++count;
 		accountList[count -1] = ac;
 		System.out.println(ac);
 		System.out.println("계좌가 등록되었습니다.");
-		return ac;
+		return 0;
 	}
+	
 	public int deposit(Account dp) {
 		System.out.println(accountList[0]);
 		for (int i = 0; i < accountList.length; i++) {

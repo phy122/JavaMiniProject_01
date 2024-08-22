@@ -38,8 +38,7 @@ public class bank {
 public static void main(String[] args) {
 	AccountAccess ds = new AccountAccess();
 	Account ss = new Account();
-	
-	
+	// create를 케이스 내부에 집어넣어서 사용해볼것
 	Scanner sc = new Scanner(System.in);
 			int b;
 	do {
