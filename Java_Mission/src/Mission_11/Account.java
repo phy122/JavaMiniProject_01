@@ -28,6 +28,11 @@ public class Account{
 		this.money = money;
 	}
 	
+	public Account(String account, int password, int money) {
+		this.account = account;
+		this.password = password;
+		this.money = money;
+	}
 
 
 	public Account(String account, String name, int money, int password) {
@@ -68,7 +73,7 @@ public class Account{
 	public Object setMoney(int money) {
 		if(money > 1000000) {
 			System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
-			return null;
+			return 0;
 		}
 		return this.money = money;
 	}
@@ -82,6 +87,28 @@ public class Account{
 	public void setPassword(int password) {
 		this.password = password;
 	}
+	
+	public Object deposit(int dep) {
+		if(dep > 1000000) {
+			System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+			return null;
+		}
+		else {
+			this.money += dep;
+		}
+		return dep;
+	}
+	 
+	public Object withraw(int wit) {
+		if(wit > money) {
+			System.out.println("잔액이 부족합니다.");
+			return null;
+		}
+		else {
+			this.money -= wit;
+		}
+		return wit;
+	}
 
 
 	@Override
@@ -89,9 +116,11 @@ public class Account{
 		return "계좌정보 [계좌번호=" + account + ", 예금주명=" + name + ", 예금액=" + money + "]";
 	}
 
+
+	}
+
 	
 
 
 
 	
-}

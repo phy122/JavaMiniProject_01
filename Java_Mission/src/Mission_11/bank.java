@@ -73,8 +73,17 @@ public static void main(String[] args) {
 				ss.setPassword(ps);
 				System.out.println("예금액");
 				int money = sc.nextInt();
+				if(money > 1000000) {
+					System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+					break;
+				}
+				System.out.print("");
+				
 				ss.setMoney(money);
-				ds.create(ss);
+			
+				
+				Account newAC = new Account(account, name, money, ps);
+				ds.create(newAC);
 			break;
 			
 		case 2:
@@ -84,20 +93,39 @@ public static void main(String[] args) {
 			System.out.println("비밀번호 >>");
 			int ps1 = sc.nextInt();
 			System.out.println("입금할 금액을 입력해주세요.");
+			//계좌 및 비밀번호 조건
 			int money1 = sc.nextInt();
-			ss.setMoney(money1);
-			ds.deposit(ss);
+			if(money1 > 1000000) {
+				System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+				break;
+			}
+			
+			Account dep = new Account(account1, ps1, money1);
+			ss.deposit(money1);
 			
 			break;
 			
 		case 3:
-			System.out.println(ds.accountList[0]);
-			System.out.println(ds.accountList[1]);
-			System.out.println(ds.accountList[2]);
+			System.out.println("계좌번호 >>");
+			sc.nextLine();
+			String account2 = sc.nextLine();
+			System.out.println("비밀번호 >>");
+			int ps2 = sc.nextInt();
+			// 계좌 및 비밀번호 조건
+			System.out.println("출금할 금액을 입력해주세요.");
+			int money2 = sc.nextInt();
+			Account with = new Account(account2, ps2, money2);
+			ss.withraw(money2);
+			
 			break;
 		case 4:
+			System.out.println();
+			int w = sc.nextInt();
+			ds.read(w);
 			break;
 		case 5:
+			System.out.println();
+			ds.list();
 			break;
 		default:
 			break;
