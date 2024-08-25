@@ -54,6 +54,7 @@ public class AccountAccess {
 					
 				}catch(InputMismatchException e) {
 					System.err.println("호환할 수 없는 수치입니다..");
+					break;
 				}
 				if(money1 + accountList[i].getMoney() >= 1000000000) {
 					System.err.println("최대 예금액은 10억을 넘을 수 없습니다.");
@@ -86,6 +87,7 @@ public class AccountAccess {
 						
 					}catch(InputMismatchException e) {
 						System.err.println("호환할 수 없는 수치입니다..");
+						break;
 					}
 				
 				
