@@ -42,7 +42,7 @@ public static void main(String[] args) {
 	// create를 케이스 내부에 집어넣어서 사용해볼것
 	Scanner sc = new Scanner(System.in);
 			int b;
-	do {
+	while(true) {
 		System.out.println("===================");
 		System.out.println("1. 계좌등록");
 		System.out.println("2. 입금");
@@ -52,7 +52,13 @@ public static void main(String[] args) {
 		System.out.println("0. 종료");
 		System.out.println("===================");
 		System.out.print("입력 >>> ");
+		try {
 		b = sc.nextInt();
+		} catch (Exception e) {
+			System.err.println("숫자를 입력해주세요.");
+			sc.nextLine();
+			continue;
+		}
 		if(b == 0) break;
 		// break: 제어문을 탈출하는 키워드 * 가장 가까운 제어문만 탈출한다.
 		
@@ -61,19 +67,19 @@ public static void main(String[] args) {
 
 		switch (b) {
 		case 1:
-				System.out.println("계좌번호 >>");
-				System.out.print("(숫자만 입력해주세요)");
+			 int money = 0;
+				System.out.print("계좌번호 (숫자만 입력해주세요) >> ");
 				sc.nextLine();
 				String account  = sc.nextLine();
 				
 				if(account.length() == 9 && account.contains("-")) {
 				ss.setAccount(account);
 				
-				System.out.print("예금주명 >>");
+				System.out.print("예금주명 >> ");
 				String name = sc.nextLine();
 				ss.setName(name);
 				
-				System.out.println("비밀번호 >>");
+				System.out.print("비밀번호 >> ");
 				String ps = sc.nextLine();
 				// \\d는 숫자 하나를 의미 이후 {4}는 바로 앞의 패턴이 4번 반복됨을 의미
 				// matches 문자열이 조건과 일치하면 true,  틀리면 false 출력
@@ -86,8 +92,17 @@ public static void main(String[] args) {
 				}
 				
 				ss.setPassword(Integer.parseInt(ps));
-				System.out.println("예금액 >>");
-				int money = sc.nextInt();
+				System.out.print("예금액 >> ");
+				
+				
+				try{
+					money = sc.nextInt();
+					}catch(InputMismatchException e) {
+						System.err.println("호환할 수 없는 수치입니다..");
+						break;
+					}
+				
+				
 				sc.nextLine();
 				
 				if(money > 1000000) {
@@ -110,11 +125,11 @@ public static void main(String[] args) {
 				}
 			
 		case 2:
-			System.out.println("계좌번호 >>");
+			System.out.print("계좌번호 >> ");
 			sc.nextLine();
 			String account1 = sc.nextLine();
 			
-			System.out.println("비밀번호 >>");
+			System.out.print("비밀번호 >> ");
 			String ps1 = sc.nextLine();
 			
 
@@ -122,10 +137,10 @@ public static void main(String[] args) {
 			break;
 			
 		case 3:
-			System.out.println("계좌번호 >>");
+			System.out.print("계좌번호 >> ");
 			sc.nextLine();
 			String account2 = sc.nextLine();
-			System.out.println("비밀번호 >>");
+			System.out.print("비밀번호 >> ");
 			String ps2 = sc.nextLine();
 			
 			// 계좌 및 비밀번호 조건
@@ -133,10 +148,10 @@ public static void main(String[] args) {
 			ds.with(account2, Integer.parseInt(ps2));
 			break;
 		case 4:
-			System.out.println("계좌번호 >>");
+			System.out.print("계좌번호 >> ");
 			sc.nextLine();
 			String account3 = sc.nextLine();
-			System.out.println("비밀번호 >>");
+			System.out.print("비밀번호 >> ");
 			String ps3 = sc.nextLine();
 			ds.read(account3, Integer.parseInt(ps3));
 			break;
@@ -148,8 +163,10 @@ public static void main(String[] args) {
 		default:
 			System.err.println("번호를 제대로 입력해주세요.");
 			break;
+		
 		}
-		} while(b != 0);
+		} 
+	
 	System.out.println("시스템을 종료합니다.");
 	} 
 

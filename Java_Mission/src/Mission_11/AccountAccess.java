@@ -1,5 +1,6 @@
 package Mission_11;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AccountAccess {
@@ -42,12 +43,22 @@ public class AccountAccess {
 		
 	}
 	public void dep(String ac, int ps1) {
+			int money1 = 0;
 	
 		for (int i = 0; i < count; i++) {
 			if (accountList[i].getAccount().equals(ac) && accountList[i].getPassword() == ps1) {
 				System.out.println("입금할 금액을 입력해주세요.");
 				//계좌 및 비밀번호 조건
-				int money1 = sc.nextInt();
+				try{
+				money1 = sc.nextInt();
+					
+				}catch(InputMismatchException e) {
+					System.err.println("호환할 수 없는 수치입니다..");
+				}
+				if(money1 + accountList[i].getMoney() >= 1000000000) {
+					System.err.println("최대 예금액은 10억을 넘을 수 없습니다.");
+					return;
+				}
 				
 				accountList[i].deposit(money1);
 				System.out.println(accountList[i]);
@@ -64,12 +75,25 @@ public class AccountAccess {
 	}
 	public void with(String ac, int ps) {
 		boolean w = false;
+		int money1 = 0;
 		for (int i = 0; i < count; i++) {
 			if (accountList[i].getAccount().equals(ac) && accountList[i].getPassword() == ps) {
 				System.out.println("출금할 금액을 입력해주세요.");
 				w = true;
 				//계좌 및 비밀번호 조건
-				int money1 = sc.nextInt();
+				try{
+					money1 = sc.nextInt();
+						
+					}catch(InputMismatchException e) {
+						System.err.println("호환할 수 없는 수치입니다..");
+					}
+				
+				
+				if(money1 > 1000000) {
+					System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+					break;
+				}
+				
 				accountList[i].withraw(money1);
 				System.out.println(accountList[i]);
 				System.out.println("출금이 완료되었습니다.");

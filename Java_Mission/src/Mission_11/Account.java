@@ -21,10 +21,7 @@ public class Account{
 		this("계좌없음","예금주 없음",0,0000);
 		
 	}
-	public Account(String account, int password) {
-		this.account = account;
-		this.password = password;
-	}
+
 
 	public Account(String account, int password, int money) {
 		this.account = account;
@@ -69,10 +66,7 @@ public class Account{
 
 
 	public Object setMoney(int money) {
-		if(money > 1000000) {
-			System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
-			return 0;
-		}
+		
 		return this.money = money;
 	}
 
@@ -87,19 +81,17 @@ public class Account{
 	}
 	
 	public Object deposit(int dep) {
-		if(dep > 1000000) {
-			System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
-			return null;
-		}
-		else {
+		
+		
+		
 			this.money += dep;
-		}
+		
 		return dep;
 	}
 	 
 	public Object withraw(int wit) {
 		if(wit > money) {
-			System.out.println("잔액이 부족합니다.");
+			System.err.println("잔액이 부족합니다.");
 			return null;
 		}
 		else {
