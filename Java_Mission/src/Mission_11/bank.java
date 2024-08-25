@@ -1,5 +1,6 @@
 package Mission_11;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 /*
@@ -60,46 +61,64 @@ public static void main(String[] args) {
 
 		switch (b) {
 		case 1:
-				System.out.print("계좌번호 >>");
+				System.out.println("계좌번호 >>");
+				System.out.print("(숫자만 입력해주세요)");
 				sc.nextLine();
 				String account  = sc.nextLine();
+				
+				if(account.length() == 9 && account.contains("-")) {
 				ss.setAccount(account);
+				
 				System.out.print("예금주명 >>");
 				String name = sc.nextLine();
 				ss.setName(name);
+				
 				System.out.println("비밀번호 >>");
-				int ps = sc.nextInt();
-				ss.setPassword(ps);
-				System.out.println("예금액");
+				String ps = sc.nextLine();
+				// \\d는 숫자 하나를 의미 이후 {4}는 바로 앞의 패턴이 4번 반복됨을 의미
+				// matches 문자열이 조건과 일치하면 true,  틀리면 false 출력
+				if(ps.matches("\\d{4}")) {
+					ss.setPassword(Integer.parseInt(ps));
+				}
+				else {
+					System.err.println("비밀번호는 숫자 4자리로 입력해주세요.");
+					break;
+				}
+				
+				ss.setPassword(Integer.parseInt(ps));
+				System.out.println("예금액 >>");
 				int money = sc.nextInt();
+				sc.nextLine();
+				
 				if(money > 1000000) {
 					System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
 					break;
 				}
+				
 				System.out.print("");
+				
 				ss.setMoney(money);
 			
-				Account newAC = new Account(account, name, money, ps);
+				Account newAC = new Account(account, name, money, Integer.parseInt(ps));
 				ds.create(newAC);
-			break;
+				break;
+				}
+				
+				else {
+					System.err.println("계좌번호는 0000-0000형식으로 입력해주세요.");
+					break;
+				}
 			
 		case 2:
 			System.out.println("계좌번호 >>");
 			sc.nextLine();
 			String account1 = sc.nextLine();
+			
 			System.out.println("비밀번호 >>");
-			int ps1 = sc.nextInt();
-			System.out.println("입금할 금액을 입력해주세요.");
-			//계좌 및 비밀번호 조건
-			int money1 = sc.nextInt();
-			if(money1 > 1000000) {
-				System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
-				break;
-			}
+			String ps1 = sc.nextLine();
 			
-			Account dep = new Account(account1, ps1, money1);
-			ss.deposit(money1);
-			
+
+			ds.dep(account1,Integer.parseInt(ps1));
 			break;
 			
 		case 3:
@@ -107,27 +126,34 @@ public static void main(String[] args) {
 			sc.nextLine();
 			String account2 = sc.nextLine();
 			System.out.println("비밀번호 >>");
-			int ps2 = sc.nextInt();
-			// 계좌 및 비밀번호 조건
-			System.out.println("출금할 금액을 입력해주세요.");
-			int money2 = sc.nextInt();
-			Account with = new Account(account2, ps2, money2);
-			ss.withraw(money2);
+			String ps2 = sc.nextLine();
 			
+			// 계좌 및 비밀번호 조건
+			
+			ds.with(account2, Integer.parseInt(ps2));
 			break;
 		case 4:
-			System.out.println();
-			int w = sc.nextInt();
-			ds.read(w);
+			System.out.println("계좌번호 >>");
+			sc.nextLine();
+			String account3 = sc.nextLine();
+			System.out.println("비밀번호 >>");
+			String ps3 = sc.nextLine();
+			ds.read(account3, Integer.parseInt(ps3));
 			break;
 		case 5:
 			System.out.println();
 			ds.list();
 			break;
+			
 		default:
+			System.err.println("번호를 제대로 입력해주세요.");
 			break;
-		}} while(b != 0);
-	
-}
+		}
+		} while(b != 0);
+	System.out.println("시스템을 종료합니다.");
+	} 
 
 }
+
+	
+

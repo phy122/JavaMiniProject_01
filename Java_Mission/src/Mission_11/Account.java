@@ -19,15 +19,13 @@ public class Account{
 	
 	public Account() {
 		this("계좌없음","예금주 없음",0,0000);
+		
 	}
-
-
-	public Account(String account, String name, int money) {
+	public Account(String account, int password) {
 		this.account = account;
-		this.name = name;
-		this.money = money;
+		this.password = password;
 	}
-	
+
 	public Account(String account, int password, int money) {
 		this.account = account;
 		this.password = password;
@@ -84,8 +82,8 @@ public class Account{
 	}
 
 
-	public void setPassword(int password) {
-		this.password = password;
+	public void setPassword(int ps) {
+		this.password = ps;
 	}
 	
 	public Object deposit(int dep) {
