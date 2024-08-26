@@ -105,10 +105,7 @@ public static void main(String[] args) {
 				
 				sc.nextLine();
 				
-				if(money > 1000000) {
-					System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
-					break;
-				}
+				
 				
 				System.out.print("");
 				
