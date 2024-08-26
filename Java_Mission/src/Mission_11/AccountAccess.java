@@ -54,7 +54,9 @@ public class AccountAccess {
 					
 				}catch(InputMismatchException e) {
 					System.err.println("호환할 수 없는 수치입니다..");
+
 					sc.next();
+
 					break;
 				}
 				if(money1 + accountList[i].getMoney() >= 1000000000) {
@@ -88,7 +90,9 @@ public class AccountAccess {
 						
 					}catch(InputMismatchException e) {
 						System.err.println("호환할 수 없는 수치입니다..");
+
 						sc.next();
+
 						break;
 					}
 				
