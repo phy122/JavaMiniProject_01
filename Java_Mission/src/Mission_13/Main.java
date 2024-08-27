@@ -21,7 +21,6 @@ public class Main {
             scanner.nextLine();
 
             if (choice == 1) { 
-            	
                 ticket.addGame(new Game(function.RandomNumbers()));
             } else if (choice == 2) {
             	
