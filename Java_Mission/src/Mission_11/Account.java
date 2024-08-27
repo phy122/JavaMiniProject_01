@@ -86,12 +86,12 @@ public class Account{
 		
 			
 		
-		return this.money += dep;;
+		return this.money += dep;
 	}
 	 
 	public Object withraw(int wit) {
 			
-			return this.money -= wit;;
+			return this.money -= wit;
 	}
 
 
