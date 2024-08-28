@@ -84,20 +84,14 @@ public class Account{
 		
 		
 		
-			this.money += dep;
+			
 		
-		return dep;
+		return this.money += dep;
 	}
 	 
 	public Object withraw(int wit) {
-		if(wit > money) {
-			System.err.println("잔액이 부족합니다.");
-			return null;
-		}
-		else {
-			this.money -= wit;
-		}
-		return wit;
+			
+			return this.money -= wit;
 	}
 
 

@@ -20,7 +20,7 @@ public class Ticket {
 	
 	public void categoryTicket() {
 		for (int i = 0; i < games.size(); i++) {
-			 System.out.println("게임 " + (char)('A' + i) + ": " + games.get(i).toString());
+			 System.out.println((char)('A' + i) + "  " + games.get(i).toString());
 		}
 	}
 

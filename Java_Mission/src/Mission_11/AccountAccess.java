@@ -54,6 +54,9 @@ public class AccountAccess {
 					
 				}catch(InputMismatchException e) {
 					System.err.println("호환할 수 없는 수치입니다..");
+
+					sc.next();
+
 					break;
 				}
 				if(money1 + accountList[i].getMoney() >= 1000000000) {
@@ -62,50 +65,59 @@ public class AccountAccess {
 				}
 				
 				accountList[i].deposit(money1);
+				System.out.println(money1 + "원 입금이 완료되었습니다.");
 				System.out.println(accountList[i]);
-				System.out.println("입금이 완료되었습니다.");
+				return;
+			}
+			else {
+				System.err.println("계좌 또는 비밀번호가 일치하지 않습니다.");
 				return;
 			}
 		}
 		
-				System.err.println("계좌 또는 비밀번호가 일치하지 않습니다.");
+				
 			
 			
 	
 		
 	}
 	public void with(String ac, int ps) {
-		boolean w = false;
 		int money1 = 0;
 		for (int i = 0; i < count; i++) {
 			if (accountList[i].getAccount().equals(ac) && accountList[i].getPassword() == ps) {
 				System.out.println("출금할 금액을 입력해주세요.");
-				w = true;
 				//계좌 및 비밀번호 조건
 				try{
 					money1 = sc.nextInt();
 						
 					}catch(InputMismatchException e) {
 						System.err.println("호환할 수 없는 수치입니다..");
+
+						sc.next();
+
 						break;
 					}
 				
 				
 				if(money1 > 1000000) {
-					System.err.println("최대 입금액은 100만원을 넘을 수 없습니다.");
+					System.err.println("최대 출금액은 100만원을 넘을 수 없습니다.");
 					break;
+				}
+				else if(money1 > accountList[i].getMoney()) {
+					
+						System.err.println("잔액이 부족합니다.");
+						break;
+					
 				}
 				
 				accountList[i].withraw(money1);
+				System.out.println(money1 + "원 출금이 완료되었습니다.");
 				System.out.println(accountList[i]);
-				System.out.println("출금이 완료되었습니다.");
+			}
+			else{
+				System.err.println("계좌 또는 비밀번호가 일치하지 않습니다.");
 			}
 		}
-			if (w == false)
-			{
-				System.err.println("계좌 또는 비밀번호가 일치하지 않습니다.");
-			
-	}
 	}
 	//계좌 목록 조회
 	public void list() {
