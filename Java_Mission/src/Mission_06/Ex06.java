@@ -1,4 +1,4 @@
-package LEE;
+package Mission_06;
 
 import java.util.Arrays;
 import java.util.Random;
