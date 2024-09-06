@@ -1,4 +1,4 @@
-package LEE;
+package Mission_02;
 
 import java.util.Scanner;
 
